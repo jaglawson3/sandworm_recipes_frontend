@@ -52,22 +52,27 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
       image: 'http://www.recipe.com/images/bloody-mary-pot-roast-R117404-ss.jpg',
       ingredients: [{
         item: 'potatoes',
-        amount: '400,000',
+        amount: 400000
         },{
         item: 'yams',
-        amount: '350,000',
+        amount: 350000,
+        unit: 'tons'
         },{
         item: 'juvenile sandworm of Arrakis',
-        amount: '9.5 metric tons',
+        amount: 9.5,
+        unit: 'tons'
         },{
         item: 'sage',
-        amount: '100,000 metric tons',
+        amount: 100000,
+        unit: 'tons'
         },{
         item: 'sage',
-        amount: '100,000 metric tons',
+        amount: 13560,
+        unit: 'tons'
         },{
         item: 'water of life from dead sandworm',
-        amount: '7 gallons'
+        amount: 7,
+        unit: 'gallons'
       }],
       directions: '1.Kill 2.Cook 3.Try to eat!',
       cookTime: 12,
@@ -82,7 +87,33 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
       }],
       commentsVisible: false,
       newCommentVisible: false
-  }];
+  },{
+    title: 'Worm au Naturale',
+    author: 'The Fremen',
+    image: 'http://thumbs.dreamstime.com/thumblarge_841/8414965.jpg',
+    ingredients: [{
+      item: 'salt',
+      amount: 1,
+      unit: 'pound'
+      },{
+      item: 'rotting sandworm carcass of Arrakis',
+      amount: 1,
+      unit: 'pound'
+      }],
+    directions: '1.Kill it 2. Clean it 3.Try to eat it!',
+    cookTime: 0,
+    prepTime: 10,
+    votes: -71,
+    comments: [{
+      author: 'Duncan Idaho',
+      text: 'delicious!'
+    }, {
+      author: 'Benegessirit Mother',
+      text: 'gross!'
+    }],
+    commentsVisible: false,
+    newCommentVisible: false
+}];
 
 // sort by stuff
   var orderBy = $filter('orderBy');

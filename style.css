@@ -22,9 +22,25 @@ hr {
   text-align: center;
 }
 
+p{
+  font-family: 'Indie+Flower';
+  font-size: .8vw;
+}
+
 .navbar {
   background-color: orange;
-  border-bottom: solid darkgray 2px;
+  border-bottom: solid darkgray 3px;
+  color: black;
+  font-size: .8vw;
+}
+
+.sandworm {
+  width: 8vw;
+  height: auto;
+  border: none;
+  margin-right: 4vw;
+  box-shadow: none;
+  padding-top: 3vw;
 }
 
 .icon{
@@ -38,13 +54,17 @@ hr {
   text-shadow:  2px 2px #888888;
 }
 
+.navbar-brand {
+  font-size: 2vw;
+}
+
 .authorDisplay, .ingredientsDisplay, .prepDisplay, .cookDisplay, .directionsDisplay, .votingDisplay {
   padding-left: 2vw;
   margin-bottom: 2vw;
   font-family: 'Indie+Flower';
 }
 
-.authorLabel{
+.authorLabel, .ingredientsLabel {
   font-size: 3vw;
 }
 

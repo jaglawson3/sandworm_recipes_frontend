@@ -17,7 +17,7 @@
     <body ng-controller="sandwormController">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Sandworm Connoisseur</a>
+          <a class="navbar-brand" href="#">Sandworm Connoisseur <img class="sandworm" src="http://www.screanews.us/SouthSkunky/monsters/sandworm1.jpg"> </a>
               <ul class="nav navbar-nav">
                 <li><a href="#" ng-click="makeNewRecipe = !makeNewRecipe"><span class="glyphicon glyphicon-plus"></span>Submit New Recipe</a></li>
                 <li class="navbar-form">
@@ -38,7 +38,7 @@
       </nav>
       <div class="container">
         <div ng-show="makeNewRecipe">
-          <form name="postForm" ng-submit="add(newRecipe)">
+          <form name="postForm" ng-submit="addRecipe(newRecipe)">
             <div class="form-group">
               <label for="title">What do you wan to call your recipe?</label>
               <input class="form-control" type="text" name="title" placeholder="recipe title" ng-model="newRecipe.title" required>
@@ -58,7 +58,7 @@
               <label for="description">Ingredients</label>
               <input class="form-control" type="text" name="ingredient" placeholder="recipe ingredient" ng-model="newRecipe.ingredients.item" required>
               <input class="form-control" type="number" name="quantity" placeholder="ingredient quantity" ng-model="newRecipe.ingredients.quantity" required>
-              <select class="selectpicker">
+              <select class="selectpicker" ng-model="unit">
                 <option>Grams</option>
                 <option>Ounces</option>
                 <option>Pounds</option>
@@ -93,15 +93,15 @@
                 <span class="glyphicon glyphicon-thumbs-down" ng-click="changeVote(recipe, -1)"></span>
               </div>
               <div class="authorLabel">Author: <div class="authorDisplay">{{recipe.author}}</div></div>
-              <h3>Ingredients:</h3>
+              <h3 class="ingredientsLabel">Ingredients:</h3>
             <div ng-repeat=" ingredient in recipe.ingredients">
-              <span class="ingredientsDisplay">{{ingredient.amount}} {{ingredient.item}}</span>
+              <span class="ingredientsDisplay">{{ingredient.amount | number}} {{ingredient.unit}} {{ingredient.item}}</span>
             </div>
             <div class="recipeTime">
               <span class="glyphicon glyphicon-dashboard"></span>
-              <span>Prep: <span class="prepDisplay">{{recipe.prepTime}} minutes</span></span>
+              <span>Prep:<span class="prepDisplay">{{recipe.prepTime}} minutes | </span></span>
               <span class="glyphicon glyphicon-dashboard"></span>
-              <span>Cook: <span class="cookDisplay">{{recipe.cookTime}} minutes</span></span>
+              <span> Cook: <span class="cookDisplay">{{recipe.cookTime}} minutes</span></span>
             </div>
             <div>
               <span>Directions: <span class="directionsDisplay">{{recipe.directions}}</span></span>
