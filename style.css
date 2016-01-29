@@ -1,0 +1,55 @@
+body{
+  background-color: #000;
+  background-image: linear-gradient(red, orange);
+  font-family: 'Pacifico', cursive;
+  font-size: 2vw;
+}
+
+img{
+  width: 30vw;
+  height: auto;
+  border-style: solid;
+  border-color: black;
+  border-width: 1vw;
+  box-shadow: 7px 7px 5px #888888;
+}
+
+.navbar {
+  background-color: orange;
+  border-bottom: solid darkgray 2px;
+}
+
+.icon{
+  width: 3vw;
+  hegiht: auto;
+}
+
+.recipeTitle {
+  font-size: 8vw;
+  color: orange;
+  text-shadow:  2px 2px #888888;
+}
+
+.authorDisplay, .ingredientsDisplay, .prepDisplay, .cookDisplay, .directionsDisplay {
+  padding-left: 2vw;
+  margin-bottom: 2vw;
+  font-family: 'Indie+Flower';
+}
+
+.glyphicon-hand-up:hover, .green {
+  color: green;
+}
+
+.glyphicon-hand-down:hover, .red {
+  color: red;
+}
+
+.glyphicon-comment:hover, .glyphicon-pencil:hover{
+  cursor: pointer;
+  cursor: hand;
+}
+
+.recipeTime{
+  margin-top: 2vw;
+  margin-bottom: 3vw;
+}

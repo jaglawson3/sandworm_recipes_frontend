@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html ng-app="sandwormRecipes">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sandworm Connoisseur</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+    <body ng-controller="sandwormController">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Sandworm Connoisseur</a>
+              <ul class="nav navbar-nav">
+                <li><a href="#" ng-click="makeNewRecipe = !makeNewRecipe"><span class="glyphicon glyphicon-plus"></span>Submit New Recipe</a></li>
+                <li class="navbar-form">
+                  <div class="form-inline">
+                    <input type="text" placeholder="search" class="form-control" ng-model="searchText">
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Sort Recipes</span><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" ng-click="order('votes')">By Votes</a></li>
+                    <li><a href="#" ng-click="order('title')"> By Title</a></li>
+                    <li><a href="#" ng-click="order('author')">By Author</a></li>
+                  </ul>
+                </li>
+              </ul>
+          </div>
+      </nav>
+      <div class="container">
+        <div ng-show="makeNewRecipe">
+          <form name="postForm" ng-submit="add(newRecipe)">
+            <div class="form-group">
+              <label for="title">What do you wan to call your recipe?</label>
+              <input class="form-control" type="text" name="title" placeholder="recipe title" ng-model="newRecipe.title" required>
+              <p>Recipes need titles.</p>
+            </div>
+            <div class="form-group">
+              <label for="author">Who are you?</label>
+              <input class="form-control" type="text" name="author" placeholder="recipe author" ng-model="newRecipe.author" required>
+              <p>You want credit right?</p>
+            </div>
+            <div class="form-group">
+              <label for="picture">Recipe Image</label>
+              <input class="form-control" type="text" name="picture" placeholder="recipe image url" ng-model="newRecipe.image" required>
+              <p>Your recipe needs a url for the imagery.</p>
+            </div>
+            <div class="form-group">
+              <label for="description">Ingredients</label>
+              <input class="form-control" type="text" name="ingredient" placeholder="recipe ingredient" ng-model="newRecipe.ingredients.item" required>
+              <input class="form-control" type="number" name="quantity" placeholder="ingredient quantity" ng-model="newRecipe.ingredients.quantity" required>
+              <select class="selectpicker">
+                <option>Grams</option>
+                <option>Ounces</option>
+                <option>Pounds</option>
+                <option>Tons</option>
+                <option>Bushels</option>
+                <option>Gallons</option>
+              </select>
+              <p>Your recipe needs ingredients.</p>
+              <input class="form-control" type="number" name="prepTime" placeholder="preperation time in minutes" ng-model="newRecipe.prepTime" required>
+              <input class="form-control" type="number" name="cookTime" placeholder="cook time in minutes" ng-model="newRecipe.cookTime" required>
+              <p>Total Time: minutes</p>
+              <input type="submit" class="btn btn-success" value="Add New Recipe" ng-click="makeNewRecipe = !makeNewRecipe">
+            </div>
+            <div class="form-group">
+              <label for="description">Directions</label>
+              <input class="form-control" type="text" name="description" placeholder="recipe directions" ng-model="newRecipe.directions" required>
+              <p>Your recipe needs directions.</p>
+              <input type="submit" class="btn btn-success" value="Add New Recipe" ng-click="makeNewRecipe = !makeNewRecipe">
+            </div>
+          </form>
+        </div>
+        <div class="well" ng-init="orderBy(votes)" ng-repeat=" recipe in recipes | filter : searchText ">
+          <div class="row">
+            <div class="col-md-2"><img ng-src="{{recipe.image}}" alt="image"></div>
+            <div class="col-md-10">
+              <h3 class="recipeTitle">{{recipe.title}}</h3>
+              <span>By: <span class="authorDisplay">{{recipe.author}}</span></span>
+              <hr>
+              <span class="glyphicon glyphicon-hand-up" ng-click="changeVote(recipe, 1)"></span>
+              <span class="glyphicon glyphicon-hand-down" ng-click="changeVote(recipe, -1)"></span>
+              <span ng-class="displayUpdatedVotes(recipe)">{{recipe.votes}}</span>
+              <h3>Ingredients:</h3>
+            <div ng-repeat=" ingredient in recipe.ingredients">
+              <span class="ingredientsDisplay">{{ingredient.amount}} {{ingredient.item}}</span>
+            </div>
+            <div class="recipeTime">
+              <span class="glyphicon glyphicon-dashboard"></span>
+              <span>Prep: <span class="prepDisplay">{{recipe.prepTime}} minutes</span></span>
+              <span>Cook: <span class="cookDisplay">{{recipe.cookTime}} minutes</span></span>
+            </div>
+            <div>
+              <span>Directions: <span class="directionsDisplay">{{recipe.directions}}</span></span>
+            </div>
+              <span class="glyphicon glyphicon-calendar"> Posted {{recipe.date | date:"longDate"}} |</span>
+              <span class="glyphicon glyphicon-comment" ng-click=" showComments = !showComments "> {{recipe.comments.length}} comments |</span>
+              <span class="glyphicon glyphicon-pencil"  ng-click=" showCommentForm = !showCommentForm "> Add comment</span>
+            <div class="comment" ng-show="showComments" ng-repeat=" comment in recipes.comments ">
+                <p><strong>{{comment.author}}</strong> | {{comment.text}}</p>
+            </div>
+              <div class="add-comment" ng-show="showCommentForm">
+                <form class="form-inline" ng-submit="addComment(recipe, newComment)">
+                  <div class="form-group">
+                    <label for="comment-author">Author</label>
+                    <input class="form-control" type="text" ng-model="newComment.author">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipe-comment">Comment</label>
+                    <input class="form-control" type="text" ng-model="newComment.text">
+                  </div>
+                  <input type="submit"  class="btn btn-success" value="Add New Comment" ng-click="showCommentForm = !showCommentForm">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
