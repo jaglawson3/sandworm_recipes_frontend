@@ -69,27 +69,30 @@
               <p>Your recipe needs ingredients.</p>
               <input class="form-control" type="number" name="prepTime" placeholder="preperation time in minutes" ng-model="newRecipe.prepTime" required>
               <input class="form-control" type="number" name="cookTime" placeholder="cook time in minutes" ng-model="newRecipe.cookTime" required>
-              <p>Total Time: minutes</p>
-              <input type="submit" class="btn btn-success" value="Add New Recipe" ng-click="makeNewRecipe = !makeNewRecipe">
             </div>
             <div class="form-group">
               <label for="description">Directions</label>
               <input class="form-control" type="text" name="description" placeholder="recipe directions" ng-model="newRecipe.directions" required>
               <p>Your recipe needs directions.</p>
-              <input type="submit" class="btn btn-success" value="Add New Recipe" ng-click="makeNewRecipe = !makeNewRecipe">
+              <input type="submit" class="btn btn-primary" value="Add New Recipe" ng-click="makeNewRecipe = !makeNewRecipe">
             </div>
           </form>
         </div>
         <div class="well" ng-init="orderBy(votes)" ng-repeat=" recipe in recipes | filter : searchText ">
           <div class="row">
-            <div class="col-md-2"><img ng-src="{{recipe.image}}" alt="image"></div>
-            <div class="col-md-10">
+            <div class="col-md-5">
+              <img ng-src="{{recipe.image}}" alt="image"></div>
+            <div class="col-md-7">
               <h3 class="recipeTitle">{{recipe.title}}</h3>
-              <span>By: <span class="authorDisplay">{{recipe.author}}</span></span>
               <hr>
-              <span class="glyphicon glyphicon-hand-up" ng-click="changeVote(recipe, 1)"></span>
-              <span class="glyphicon glyphicon-hand-down" ng-click="changeVote(recipe, -1)"></span>
+              <span>Current Rating: </span>
               <span ng-class="displayUpdatedVotes(recipe)">{{recipe.votes}}</span>
+              <hr>
+              <div class="votingDisplay">
+                <span class="glyphicon glyphicon-thumbs-up" ng-click="changeVote(recipe, 1)"></span>
+                <span class="glyphicon glyphicon-thumbs-down" ng-click="changeVote(recipe, -1)"></span>
+              </div>
+              <div class="authorLabel">Author: <div class="authorDisplay">{{recipe.author}}</div></div>
               <h3>Ingredients:</h3>
             <div ng-repeat=" ingredient in recipe.ingredients">
               <span class="ingredientsDisplay">{{ingredient.amount}} {{ingredient.item}}</span>
@@ -97,11 +100,13 @@
             <div class="recipeTime">
               <span class="glyphicon glyphicon-dashboard"></span>
               <span>Prep: <span class="prepDisplay">{{recipe.prepTime}} minutes</span></span>
+              <span class="glyphicon glyphicon-dashboard"></span>
               <span>Cook: <span class="cookDisplay">{{recipe.cookTime}} minutes</span></span>
             </div>
             <div>
               <span>Directions: <span class="directionsDisplay">{{recipe.directions}}</span></span>
             </div>
+            <hr>
               <span class="glyphicon glyphicon-calendar"> Posted {{recipe.date | date:"longDate"}} |</span>
               <span class="glyphicon glyphicon-comment" ng-click=" showComments = !showComments "> {{recipe.comments.length}} comments |</span>
               <span class="glyphicon glyphicon-pencil"  ng-click=" showCommentForm = !showCommentForm "> Add comment</span>

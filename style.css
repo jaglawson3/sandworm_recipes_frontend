@@ -14,6 +14,14 @@ img{
   box-shadow: 7px 7px 5px #888888;
 }
 
+hr {
+  padding: 0;
+  border: none;
+  border-top: medium double #333;
+  color: #333;
+  text-align: center;
+}
+
 .navbar {
   background-color: orange;
   border-bottom: solid darkgray 2px;
@@ -30,17 +38,21 @@ img{
   text-shadow:  2px 2px #888888;
 }
 
-.authorDisplay, .ingredientsDisplay, .prepDisplay, .cookDisplay, .directionsDisplay {
+.authorDisplay, .ingredientsDisplay, .prepDisplay, .cookDisplay, .directionsDisplay, .votingDisplay {
   padding-left: 2vw;
   margin-bottom: 2vw;
   font-family: 'Indie+Flower';
 }
 
-.glyphicon-hand-up:hover, .green {
+.authorLabel{
+  font-size: 3vw;
+}
+
+.glyphicon-thumbs-up:hover, .green {
   color: green;
 }
 
-.glyphicon-hand-down:hover, .red {
+.glyphicon-thumbs-down:hover, .red {
   color: red;
 }
 
@@ -52,4 +64,10 @@ img{
 .recipeTime{
   margin-top: 2vw;
   margin-bottom: 3vw;
+}
+
+.voteOnThis{
+  font-size: 2vw;
+  margin-bottom: 2vw;
+  font-family: 'Indie+Flower';
 }
