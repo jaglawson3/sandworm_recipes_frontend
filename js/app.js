@@ -19,19 +19,24 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
     image: 'http://welcometotwinpeaks.com/wp-content/uploads/700x933xspice-beer-label-merry-pranxter.jpg.pagespeed.ic.b7ZhmjUle5.jpg',
     ingredients: [{
       item: 'Hops',
-      amount: '2,000 pounds',
+      amount: 200,
+      unit: 'pounds'
       },{
       item: 'Spice Mealange (don\'t use synthetic)',
-      amount: '12 grams',
+      amount: 12,
+      unit: 'ounces'
       },{
       item: 'Mature Sandworm of Arrakis',
-      amount: '2.5 metric tons',
+      amount: 1.5,
+      unit: "tons"
       },{
       item: 'Sugar',
-      amount: '100 pounds',
+      amount: 50,
+      unit: 'pounds'
       },{
-      item: 'Water of Life (from freshly slain infant Sandworm of Arrakis)',
-      amount: '19 gallons'
+      item: 'Water of Life (of freshly slain infant Sandworm)',
+      amount: 19,
+      unit: 'gallons'
       }],
     directions: '1. Do a thing, 2. Do the next thing 3. Finish up 4. Eat the thing',
     cookTime: 24,
@@ -58,7 +63,7 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
         amount: 350000,
         unit: 'tons'
         },{
-        item: 'juvenile sandworm of Arrakis',
+        item: 'juvenile Arrakin sandworm meat with skin',
         amount: 9.5,
         unit: 'tons'
         },{
@@ -70,11 +75,11 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
         amount: 13560,
         unit: 'tons'
         },{
-        item: 'water of life from dead sandworm',
+        item: 'Water of Life (of freshly slain infant Sandworm)',
         amount: 7,
         unit: 'gallons'
       }],
-      directions: '1.Kill 2.Cook 3.Try to eat!',
+      directions: '1.Kill 2.Saute 3. Sear 4. Cook at 400 degrees 5.Try to eat!',
       cookTime: 12,
       prepTime: 6,
       votes: -7,
@@ -82,8 +87,8 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
         author: 'Duncan Idaho',
         text: 'delicious!'
       }, {
-        author: 'Benegessirit Mother',
-        text: 'gross!'
+        author: 'Bene Gessirit Mother',
+        text: 'Gross! Made me wish I had died!'
       }],
       commentsVisible: false,
       newCommentVisible: false
@@ -100,19 +105,45 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
       amount: 1,
       unit: 'pound'
       }],
-    directions: '1.Kill it 2. Clean it 3.Try to eat it!',
+    directions: '1.Kill it 2. Clean it 3.Add some salt 4.Try to eat it!',
     cookTime: 0,
     prepTime: 10,
     votes: -71,
     comments: [{
-      author: 'Duncan Idaho',
-      text: 'delicious!'
+      author: 'Emperor Shaddam the IV',
+      text: 'Sheer smell made me vomit!'
     }, {
-      author: 'Benegessirit Mother',
-      text: 'gross!'
+      author: 'Guild Navigator 2nd class (Space Guild)',
+      text: 'Food is for mortals, this tastes like Harkonnan garbage!'
     }],
     commentsVisible: false,
     newCommentVisible: false
+},{
+  title: 'Worm au Jus',
+  author: 'Kwisatz Haderach',
+  image: 'http://thumbs.dreamstime.com/thumblarge_841/8414965.jpg',
+  ingredients: [{
+    item: 'Sandworm bile',
+    amount: 1,
+    unit: 'gallon'
+    },{
+    item: 'rotting Arrakin Sandworm',
+    amount: 1,
+    unit: 'pound'
+    }],
+  directions: '1.Kill 2. Clean 3.Roast at 375 degrees for 3 hours 4.Try to eat it!',
+  cookTime: 0,
+  prepTime: 10,
+  votes: -71,
+  comments: [{
+    author: 'Duncan Idaho',
+    text: 'Delicious! Honestly, I can eat anything'
+  }, {
+    author: 'Feyd Rautha (House Harkonnen)',
+    text: 'Reminds me of urine with chunks!'
+  }],
+  commentsVisible: false,
+  newCommentVisible: false
 }];
 
 // sort by stuff
@@ -162,8 +193,4 @@ app.controller("sandwormController", ['$scope', '$filter', function($scope, $fil
       return "";
     }
   };
-
-
-
-
 }])
